@@ -1,0 +1,76 @@
+@startuml
+title 基于GitHub的学生实验成绩管理平台--类图
+class teachers {
+    <b>id</b> （教师创建）
+    teacher_no (教师编号)
+    teacher_name (教师姓名)
+    teacher_github_name (教师GitHub的名称)
+    teacher_pwd (教师密码)
+    addtime(教师创建时间)
+    status (教师是否禁用)
+}
+class student_course {
+    <b>id</b> （教师创建）
+    course_no (课程编号)
+    student_no (学生编号)
+    addtime (增加日期)
+}
+
+class students {
+    <b>id</b> （学生创建）
+    <b>course_no</b> （课程编号）
+    student_no (学生编号)
+    student_name (学生姓名)
+    student_github_name (学生GitHub的名称)
+    student_pwd (学生密码)
+    student_class(学生班级)
+    addtime(学生创建时间)
+    status (学生是否禁用)
+    
+}
+class courses {
+    <b>id</b> （教师创建）
+    course_no (课程编号)
+    course_name (课程名称)
+    status (状态)
+    addtime (增加日期)
+    <b>term_id</b> （学期编号）
+    <b>student_no</b> （学生编号）
+    <b>teacher_no</b> （教师编号）
+}
+
+class grades {
+    <b>grade_id</b> （教师创建）
+    grade_1 (作业完成的)
+    grade_2 (实验成绩)
+    grade_3 (考勤)
+    grade_4 (期末答辩)
+    memo (评价)
+    addtime (评改日期)
+    <b>test_id</b> （实验编号）
+    <b>course_no</b> （课程编号）
+    <b>student_no</b> （学生编号）
+}
+
+class tests {
+    <b>test_id</b> （实验编号）
+    title (实验名称)
+    addtime (增加时间)
+    <b>course_no</b> （课程编号）
+}
+
+class terms {
+    <b>term_id</b> （学期编号）
+    title (学期名称)
+    addtime (增加时间)
+}
+
+students "1" -- "n"  grades
+tests "1" -- "n"  grades
+courses "1" -- "n"  grades
+student_course "1" -- "n" students
+student_course "1" -- "n" courses 
+terms "1" -- "n" courses 
+teachers "1" -- "n" courses 
+courses "1" -- "n"  tests
+@enduml
